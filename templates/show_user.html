@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看单个用户信息</title>
+</head>
+<body>
+    <h1>查看单个用户信息</h1>
+    <table border="1">
+        <tr>
+            <th>用户ID</th>
+            <th>{{ user["id"] }}</th>
+        </tr>
+        <tr>
+            <th>姓名</th>
+            <th>{{ user["name"] }}</th>
+        </tr>
+        <tr>
+            <th>性别</th>
+            <th>{{ user["sex"] }}</th>
+        </tr>
+        <tr>
+            <th>年龄</th>
+            <th>{{ user["age"] }}</th>
+        </tr>
+        <tr>
+            <th>邮箱</th>
+            <th>{{ user["email"] }}</th>
+        </tr>
+    </table>
+</body>
+</html>
