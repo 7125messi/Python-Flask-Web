@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ECharts3 Ajax</title>
+    <script src="/static/jquery-3.4.1.min.js"></script>
+    <script src="/static/echarts.min.js"></script>
+</head>
+
+<body>
+    <!--为ECharts准备一个具备大小（宽高）的Dom-->
+    <div id="main" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+
+    <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 显示标题，图例和空的坐标轴
+    myChart.setOption({
+        title: {
+            text: '异步数据加载示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['蒸发量','降水量']
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '蒸发量',
+            type: 'line',
+            data: []
+        },{
+            name: '降水量',
+            type: 'bar',
+            data: []
+        }]
+    });
+
+    myChart.showLoading(); // 显示加载动画
+
+    // 异步加载数据
+    $.get('/weather').done(function (data) {
+        myChart.hideLoading(); // 隐藏加载动画
+
+        // 填入数据
+        myChart.setOption({
+            xAxis: {
+                data: data.month
+            },
+            series: [{
+                name: '蒸发量', // 根据名字对应到相应的系列
+                data: data.evaporation.map(parseFloat) // 转化为数字（注意map）
+            },{
+                name: '降水量',
+                data: data.precipitation.map(parseFloat)
+            }]
+        });
+    });
+    </script>
+</body>
+</html>
