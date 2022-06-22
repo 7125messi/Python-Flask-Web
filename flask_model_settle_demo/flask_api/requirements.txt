@@ -9,7 +9,7 @@ idna==2.6
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
-numpy==1.13.1
+numpy==1.22.0
 pandas==0.20.3
 python-dateutil==2.6.1
 python-mimeparse==1.6.0
